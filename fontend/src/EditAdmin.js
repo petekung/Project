@@ -38,7 +38,7 @@ export default function Editcom() {
     fetch("http://localhost:3333/EditAdmin/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result["message"]);
+        
         if (result["status"] === "ok") {
           alert(result["message"]);
           window.location.href = "/Adminadmin";

@@ -144,8 +144,8 @@ export default function CreatUserCom() {
                     label="สถานะเจ้าหน้าที่"
                     onChange={(e) => setstatus(e.target.value)}
                   >
-                    <MenuItem value={"0"}>เปิดใช้งาน</MenuItem>
-                    <MenuItem value={"1"}>ปิดใช้งาน</MenuItem>
+                    <MenuItem value={"1"}>เปิดใช้งาน</MenuItem>
+                    <MenuItem value={"0"}>ปิดใช้งาน</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

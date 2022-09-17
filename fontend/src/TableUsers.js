@@ -15,10 +15,18 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 
 
 export default function SimpleContainer() {
+  
   const repassmail = id =>{
     window.location = ' '+id
   }
   const [items, setItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3333/fromreserve")
+      .then((res) => res.json())
+      .then((result) => {
+        setItems(result);
+      });
+  }, []);
   useEffect(() => {
     fetch("http://localhost:3333/repassmail")
       .then((res) => res.json())
@@ -58,7 +66,7 @@ fetch("http://localhost:3333/deletpassmail", requestOptions)
           <Box display="flex">
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                หน้าหลักรายการ
+                รายการขอรหัสผ่านอีเมลมหาวิทยาลัยราชภัฏเลย
               </Typography>
             </Box>
             <Box>
@@ -70,10 +78,10 @@ fetch("http://localhost:3333/deletpassmail", requestOptions)
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>รหัสรายการคำขอ</TableCell>
+                  <TableCell>รหัสรายการคำขออีเมล</TableCell>
                   <TableCell align="center">รายการคำขอ</TableCell>
                   <TableCell align="center">ผลคำขอ</TableCell>
-                  <TableCell align="center">หมายเหตุ</TableCell>
+                  
                   <TableCell align="center">วันที่ขอ</TableCell>
 
                   
@@ -83,7 +91,10 @@ fetch("http://localhost:3333/deletpassmail", requestOptions)
               </TableHead>
               <TableBody>
                 {items.map((row) => (
+                 
+                  
                   <TableRow
+                  
                     key={row.passmail_id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
@@ -92,8 +103,8 @@ fetch("http://localhost:3333/deletpassmail", requestOptions)
                     </TableCell>
                     <TableCell align="center">{row.name_passmail}</TableCell>
                     <TableCell align="center">{row.new_passmail}</TableCell>
-                    <TableCell align="center">-</TableCell>
-                    <TableCell align="center">{row.request_date}</TableCell>
+                   
+                    <TableCell align="center" type="text">{row.request_date}</TableCell>
                     
                     <TableCell align="center">
                    

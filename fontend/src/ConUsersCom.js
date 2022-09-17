@@ -41,7 +41,7 @@ function App() {
           </Box>
 
           <Box>
-            <Link href="">
+            <Link href="/reserveusers">
               {" "}
               <Button variant="contained">จองใช้ห้องคอมพิวเตอร์</Button>
             </Link>

@@ -1,6 +1,7 @@
 
 import ConMainUsers from './ConMainUsers'
 import TabelUsers from './TableUsers'
+import Tabelreserve from './Tabelreserve'
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       
       <ConMainUsers/>
       <TabelUsers/>
+      <Tabelreserve/>
+
 
     </div>
   );

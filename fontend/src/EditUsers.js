@@ -73,7 +73,7 @@ export default function EditUsers() {
     fetch("http://localhost:3333/EditUsers/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result['message'])
+        
         if (result["status"] === "ok") {
           alert(result['message'])
           window.location.href = "/AdminUsers";
@@ -187,7 +187,7 @@ export default function EditUsers() {
                 <Grid item xs={6} sm={12}>
                   <TextField
                     id="major"
-                    label="คณะ"
+                    label="สาขา"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => setmajor(e.target.value)}
@@ -198,7 +198,7 @@ export default function EditUsers() {
                 <Grid item xs={6} sm={12}>
                   <TextField
                     id="faculty"
-                    label="สาขา"
+                    label="คณะ"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => setfaculty(e.target.value)}

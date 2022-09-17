@@ -14,6 +14,9 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 function Copyright(props) {
+  const login = (id) => {
+    window.location = "/MainUsers/" + id;
+  };
   return (
     <Typography
       variant="body2"
@@ -55,7 +58,7 @@ export default function SignInSide() {
       .then((response) => response.json())
       .then((data) => {
         if(data.status==='ok'){
-          window.location ='/MainUsers/'
+          window.location ='/MainUsers'
           alert('เข้าสู่ระบบสำเร็จ')
         }else{
             alert('รหัสผ่านหรือออีเมลไม่ถูกต้อง')
@@ -76,9 +79,9 @@ export default function SignInSide() {
           item
           xs={false}
           sm={4}
-          md={7}
+          md={6}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: "url(https://image.makewebeasy.net/makeweb/0/vkuWTlvrm/222/B.jpg?v=202009251017)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -174,7 +177,7 @@ export default function SignInSide() {
                color="secondary"
                sx={{ mt: 3, mb: 2 }}
              >
-              <Link href="/" variant="body2">
+              <Link href="" variant="body2">
              {"เข้าสู่ระบบสำหรับผู้บริหาร"}
            </Link>
              </Button>

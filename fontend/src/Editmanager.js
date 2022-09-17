@@ -39,7 +39,7 @@ export default function Editmanager() {
     fetch("http://localhost:3333/Editmanager/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result["message"]);
+        
         if (result["status"] === "ok") {
           alert(result["message"]);
           window.location.href = "/MainManager";

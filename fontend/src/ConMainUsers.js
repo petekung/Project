@@ -38,13 +38,13 @@ function App() {
           justifyContent="center"
         >  <Box>
         <Link href="/Repassmail">
-          <Button variant="contained" color="success">ขอรับรหัสผ่านอีเมลลืใหม่</Button>
+          <Button variant="contained" >ขอรับรหัสผ่านอีเมลลืใหม่</Button>
         </Link>
         
       </Box>
       <Box>
-        <Link href="">
-          <Button variant="contained" color="success">ขอจองใช้ห้องคอม</Button>
+        <Link href="/reserveusers">
+          <Button variant="contained" >ขอจองใช้ห้องคอม</Button>
         </Link>
         
       </Box>
@@ -53,7 +53,7 @@ function App() {
           <Box>
             <Link href="">
               {" "}
-              <Button variant="contained"color="success">ยืม-คืนอุปกรร์ครุภัณ</Button>
+              <Button variant="contained">ยืม-คืนอุปกรร์ครุภัณ</Button>
             </Link>
           </Box>
           

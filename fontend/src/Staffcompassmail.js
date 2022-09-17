@@ -85,7 +85,7 @@ export default function Editcom() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="sm" sx={{ p: 2 }}>
+      <Container maxWidth="sm" sx={{ p: 8 }}>
         <Typography variant="h6" gutterBottom component="div">
           ข้อมูลคำขอผู้ใช้
         </Typography>
@@ -93,8 +93,8 @@ export default function Editcom() {
         <form onSubmit={handlesubmit}>
           <TableBody>
             <Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={6} sm={8}>
+              <Grid container spacing={1} >
+                <Grid item xs={6} sm={12}>
                   <TextField
                     id="id_card"
                     label="เลขประจำตัวนักศึกษา"
@@ -105,7 +105,7 @@ export default function Editcom() {
                     value = {id_card}
                   />
                 </Grid>
-                <Grid item xs={6} sm={8}>
+                <Grid item xs={6} sm={12}>
                   <TextField
                     id="faculty"
                     label="คณะ"
@@ -117,7 +117,7 @@ export default function Editcom() {
 
                   />
                 </Grid>
-                <Grid item xs={6} sm={8}>
+                <Grid item xs={6} sm={12}>
                 <TextField
                     id="major"
                     label="สาขาา"
@@ -129,7 +129,7 @@ export default function Editcom() {
 
                   />
                 </Grid>
-                <Grid item xs={6} sm={8}>
+                <Grid item xs={6} sm={12}>
                   <TextField
                     id="study_group"
                     label="หมู่เรียน"
@@ -141,7 +141,7 @@ export default function Editcom() {
 
                   />
                 </Grid>
-                <Grid item xs={6} sm={8}>
+                <Grid item xs={6} sm={12}>
                   <TextField
                     id="name_passmail"
                     label="หัวข้อ"
@@ -154,7 +154,7 @@ export default function Editcom() {
                   />
                 </Grid>
 
-                <Grid item xs={6} sm={8}>
+                <Grid item xs={6} sm={12}>
                   <TextField
                     id="new_passmail"
                     label="ส่งรหัสใหม่ให้ผู้ใช้"
@@ -183,7 +183,7 @@ export default function Editcom() {
                 
 
                 <Grid item xs={8}>
-                  <Button type="submit" variant="contained" fullWidth >
+                  <Button type="submit" variant="contained" fullWidth  >
                     ส่งรหัสใหม่ให้ผู้ใช้
                   </Button>
                 </Grid>

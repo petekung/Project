@@ -28,6 +28,18 @@ import Repassmail from './Repassmail'
 import MainManager from './MainManager'
 import Editmanager from './Editmanager'
 import Staffcompassmail from './Staffcompassmail'
+import Reserveusers from './Reserveusers'
+import Noreserve from './allowreserve'
+import Resevedd from './Resevedd'
+import Mainmanageroom from './Mainmanageroom'
+import Editroom from './Editroom'
+import Creatroom from './Creatroom'
+
+
+
+
+
+
 import * as ReactDOM from 'react-dom/client';
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -39,6 +51,12 @@ root.render(
   <BrowserRouter>
   <Routes>
   <Route path ="/" element={< Login />} />
+  <Route path ="/ManageRoom" element={< Mainmanageroom />} />
+  <Route path ="/Creatroom" element={< Creatroom />} />
+    <Route path ="/Editroom/:id_roomname" element={< Editroom />} />
+  <Route path ="/Resevedd" element={< Resevedd />} />
+  <Route path ="/Noreserve/:room_id" element={< Noreserve />} />
+  <Route path ="/reserveusers" element={< Reserveusers />} />
   <Route path ="/Staffcompassmail/:passmail_id" element={< Staffcompassmail />} />
   <Route path ="/Editmanager:manager_id" element={< Editmanager />} />
   <Route path ="/Creatmanager" element={< Creatmanager />} />
@@ -65,6 +83,7 @@ root.render(
   <Route path ="UsersCom" element={< UsersCom />} />
   <Route path ="MainManager" element={< MainManager />} />
   <Route path ="Repassmail" element={< Repassmail />} />
+  
 
 
 

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,6 +16,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Stack from "@mui/material/Stack";
 function Copyright(props) {
   return (
     <Typography
@@ -37,6 +38,31 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [images, setImages] = useState([]);
+  const [imageURL, setImageURL] = useState([]);
+
+  useEffect(() => {
+    if (images.length < 1) return;
+    const newImagesUrls = [];
+    images.forEach((image) => newImagesUrls.push(URL.createObjectURL(image)));
+    setImageURL(newImagesUrls);
+  }, [images]);
+  function onImageChang(e) {
+    setImages([...e.target.files]);
+  }
+  const [images2, setImages2] = useState([]);
+  const [imageURL2, setImageURL2] = useState([]);
+  useEffect(() => {
+    if (images2.length < 1) return;
+    const newImagesUrls2 = [];
+    images2.forEach((image2) =>
+      newImagesUrls2.push(URL.createObjectURL(image2))
+    );
+    setImageURL2(newImagesUrls2);
+  }, [images2]);
+  function onImageChang2(e) {
+    setImages2([...e.target.files]);
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,6 +78,8 @@ export default function SignUp() {
       major: data.get("major"),
       faculty: data.get("faculty"),
       phonenumber: data.get("phonenumber"),
+      image_id_card_student: data.get("image_id_card_student"),
+      image_id_population: data.get("image_id_population"),
     };
     fetch("http://localhost:3333/register", {
       method: "POST",
@@ -74,6 +102,8 @@ export default function SignUp() {
         console.error("Error:", error);
       });
   };
+  console.log(imageURL);
+  console.log(images);
 
   return (
     <ThemeProvider theme={theme}>
@@ -143,7 +173,7 @@ export default function SignUp() {
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <Box sx={{ minWidth: 120 }}>
+                  <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">
                         คำนำหน้าชื่อ
@@ -191,13 +221,11 @@ export default function SignUp() {
                     required
                   />
                 </Grid>
-              
+
                 <Grid item xs={12}>
-                <Box sx={{ minWidth: 120 }}>
+                  <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        คณะ
-                      </InputLabel>
+                      <InputLabel id="demo-simple-select-label">คณะ</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="faculty"
@@ -206,17 +234,30 @@ export default function SignUp() {
                         required
                       >
                         <MenuItem value={"ครุศาสตร์"}>คณะครุศาสตร์</MenuItem>
-                        <MenuItem value={"คณะวิทยาการจัดการ"}>คณะวิทยาการจัดการ</MenuItem>
-                        <MenuItem value={"คณะมนุษย์ศาสตรและสังคมศาสตร์"}>คณะมนุษย์ศาสตรและสังคมศาสตร์</MenuItem>
-                        <MenuItem value={"คณะวิทยาศาสตร์และเทคโนโลยี"}>คณะวิทยาศาสตร์และเทคโนโลยี</MenuItem>
-                        <MenuItem value={"คณะเทคโนโลยีอุตสาหกรรม"}>คณะเทคโนโลยีอุตสาหกรรม</MenuItem>
+                        <MenuItem value={"คณะวิทยาการจัดการ"}>
+                          คณะวิทยาการจัดการ
+                        </MenuItem>
+                        <MenuItem value={"คณะมนุษย์ศาสตรและสังคมศาสตร์"}>
+                          คณะมนุษย์ศาสตรและสังคมศาสตร์
+                        </MenuItem>
+                        <MenuItem value={"คณะวิทยาศาสตร์และเทคโนโลยี"}>
+                          คณะวิทยาศาสตร์และเทคโนโลยี
+                        </MenuItem>
+                        <MenuItem value={"คณะเทคโนโลยีอุตสาหกรรม"}>
+                          คณะเทคโนโลยีอุตสาหกรรม
+                        </MenuItem>
                       </Select>
                     </FormControl>
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField fullWidth id="major" label="สาขา" name="major"required/>
-                  
+                  <TextField
+                    fullWidth
+                    id="major"
+                    label="สาขา"
+                    name="major"
+                    required
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -227,11 +268,72 @@ export default function SignUp() {
                     required
                   />
                 </Grid>
+                <Grid item xs={6}>
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Button variant="contained" component="label">
+                      อัปรูปบัตรประจำตัวประชาชน
+                      <input
+                        hidden
+                        accept="image/*"
+                        multiple
+                        type="file"
+                        fullWidth
+                        id="image_id_population"
+                        name="image_id_population"
+                        required
+                        onChange={onImageChang}
+                      />
+                    </Button>
+                  </Stack>
+                  <br></br>
+                  {imageURL.map((imageSRC) => (
+                    <img
+                      width="200"
+                      height="200"
+                      id="image_id_population"
+                      name="image_id_population"
+                      src={imageSRC}
+                    />
+                  ))}
+                </Grid>
+                <Grid item xs={6}>
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Button variant="contained" component="label">
+                      อัปรูปบัตรประจำตัวนักศึกษา
+                      <input
+                        hidden
+                        accept="image/*"
+                        multiple
+                        type="file"
+                        id="image_id_card_student"
+                        name="image_id_card_student"
+                        required
+                        onChange={onImageChang2}
+                      />
+                    </Button>
+                  </Stack>
+                  <br></br>
+                  {imageURL2.map((imageSRC2) => (
+                    <img
+                      width="200"
+                      height="200"
+                      id="image_id_card_student"
+                      name="image_id_card_student"
+                      required
+                      src={imageSRC2}
+                    />
+                  ))}
+                </Grid>
+                <Grid item xs={12}></Grid>
 
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox value="allowExtraEmails" color="primary" required/>
+                      <Checkbox
+                        value="allowExtraEmails"
+                        color="primary"
+                        required
+                      />
                     }
                     label="ฉันยินยอมให้ข้อมูลเพื่อใช้ในการใช้งานใน
                     ระบบแจ้ง ยืม จองออนไลน์ของสำนักวิทยบริการและเทคโนโลยีสารสนเทศ

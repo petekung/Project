@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
   user: "root",
   database: "project_end",
 
-});
+}); 
 
 app.use(cors());
 
@@ -23,7 +23,7 @@ app.use(express.json());
 app.post("/register", jsonParser, function (req, res, next) {
   bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
     connection.execute(
-      "INSERT INTO  d4_users (email,password,status_users,title_name,id_population,firstname,lastname,major,faculty,phonenumber) VALUES (?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO  d4_users (email,password,status_users,title_name,id_population,firstname,lastname,major,faculty,phonenumber,image_id_card_student,image_id_population) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
       [
         req.body.email,
         hash,
@@ -35,6 +35,8 @@ app.post("/register", jsonParser, function (req, res, next) {
         req.body.major,
         req.body.faculty,
         req.body.phonenumber,
+        req.body.image_id_card_student,
+        req.body.image_id_population,
       ],
       function (err, results, fields) {
         if (err) {
@@ -69,6 +71,27 @@ app.post("/registerManager", jsonParser, function (req, res, next) {
       }
     );
   });
+});
+app.post("/creatroom", jsonParser, function (req, res, next) {
+  
+    connection.execute(
+      "INSERT INTO  d8_room_name (name,seat,number_room) VALUES (?,?,?)",
+      [
+        req.body.name,
+        
+        req.body.seat,
+        req.body.number_room,
+       
+      ],
+      function (err, results, fields) {
+        if (err) {
+          res.json({ status: "error", message: err });
+          return;
+        }
+        res.json({ status: "ok" ,message:"เพิ่มห้องสำเร็จ" });
+      }
+    );
+  
 });
 app.post("/registerStaffcom", jsonParser, function (req, res, next) {
   bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
@@ -134,8 +157,8 @@ app.post("/registerAdmin", jsonParser, function (req, res, next) {
 app.post("/requestmail", jsonParser, function (req, res, next) { 
     
     connection.execute(  
-      "INSERT INTO  d7_passmail_lru (id_card,major,faculty,study_group,name_passmail,new_passmail) VALUES (?,?,?,?,?,?)",
-      [ req.body.id_card, req.body.major, req.body.faculty,req.body.study_group,req.body.name_passmail,req.body.new_passmail],
+      "INSERT INTO  d7_passmail_lru (id_card,major,faculty,study_group,name_passmail,new_passmail,request_date) VALUES (?,?,?,?,?,?,?)",
+      [ req.body.id_card, req.body.major, req.body.faculty,req.body.study_group,req.body.name_passmail,req.body.new_passmail,req.body.request_date],
       function (err, results, fields) {
         if (err) {
           res.json({ status: "error", message: err });
@@ -146,6 +169,22 @@ app.post("/requestmail", jsonParser, function (req, res, next) {
     );
 
   
+});
+app.post("/fromreseve", jsonParser, function (req, res, next) { 
+    
+  connection.execute(  
+    "INSERT INTO  d5_computer_room (room_name,detail_reserve,date_reserve,time_start,time_end,name_reserve,note,con_firm) VALUES (?,?,?,?,?,?,?,?)",
+    [ req.body.room_name, req.body.detail_reserve, req.body.date_reserve,req.body.time_start,req.body.time_end,req.body.name_reserve,,req.body.note,req.body.con_firm],
+    function (err, results, fields) { 
+      if (err) {
+        res.json({ status: "error", message: err });
+        return;
+      }
+      res.json({ status: "ok" ,message: "ส่งคำขอสำเร็จ กรุณารอเจ้าหน้าที่ตรวจสอบ"});
+    }
+  );
+
+
 });
 
 app.post("/login", jsonParser, function (req, res, next) {
@@ -217,7 +256,28 @@ app.get("/selectUsers/:id", (req, res) =>{
   connection.execute( 
     
     "SELECT * FROM d4_users WHERE id=?",id,(err, result) => {
+      
+
+
+    if (err) {
+      console.log(err);
+    } else {
+      res.json({ status: "ok", message: result }); 
+      
     
+    }
+    
+});
+});
+app.get("/Noreserve/:room_id", (req, res) =>{
+  
+  const room_id = [req.params.room_id]
+  connection.execute( 
+    
+    "SELECT * FROM d5_computer_room WHERE room_id=?",room_id,(err, result) => {
+      
+
+
     if (err) {
       console.log(err);
     } else {
@@ -234,6 +294,22 @@ app.get("/selectAdmin/:id", (req, res) =>{
   connection.execute( 
     
     "SELECT * FROM d12_admin WHERE id=?",id,(err, result) => {
+    
+    if (err) {
+      console.log(err);
+    } else {
+      res.json({ status: "ok", message: result });
+    
+    }
+    
+});
+});
+app.get("/selectroom/:id_roomname", (req, res) =>{
+  
+  const id_roomname = [req.params.id_roomname] 
+  connection.execute( 
+    
+    "SELECT * FROM d8_room_name WHERE id_roomname=?",id_roomname,(err, result) => {
     
     if (err) {
       console.log(err);
@@ -299,7 +375,7 @@ app.get("/selectpassmail/:passmail_id", (req, res) =>{
     "SELECT * FROM d7_passmail_lru WHERE passmail_id=?",passmail_id,(err, result) => {
     
     if (err) {
-      console.log(err);
+      console.log(err); 
     } else {
       res.json({ status: "ok", message: result });
       
@@ -412,6 +488,26 @@ app.get("/repassmail", (req, res) => {
     }
   });
 });
+app.get("/fromreserve", (req, res) => {
+  connection.execute("SELECT * FROM d5_computer_room ORDER BY room_id DESC", (err, result) => {
+    [req.body.id];
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+app.get("/roomname", (req, res) => {
+  connection.execute("SELECT * FROM d8_room_name  ", (err, result) => {
+    [req.body.id];
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 app.get("/Users", (req, res) => {
   connection.execute("SELECT * FROM d4_users", (err, result) => {
     [req.body.id];
@@ -458,6 +554,54 @@ app.put("/Editcom/", (req, res) => {
   });
  
 });
+app.put("/allowreserve/", (req, res) => { 
+  const room_id = req.body.room_id;
+  const room_name = req.body.room_name;
+  const detail_reserve = req.body.detail_reserve;
+  const date_reserve = req.body.date_reserve;
+  const time_start = req.body.time_start;
+  const time_end = req.body.time_end;
+  const name_reserve= req.body.name_reserve;
+  const note = req.body.note;
+  const con_firm = req.body.con_firm;
+  
+    connection.execute(
+      "UPDATE d5_computer_room SET room_name = ?,detail_reserve = ?,detail_reserve = ?,date_reserve = ?,time_start = ?,time_end = ?,name_reserve = ? ,note =? ,con_firm=? WHERE room_id = ?", 
+      [room_name,detail_reserve,detail_reserve,date_reserve,time_start,time_end,name_reserve,note,con_firm,room_id],
+      (err, result) => {
+        
+      if (err) {
+        console.log(err);
+        
+      } else {
+        res.json({ status: "ok", message: "ส่งสำเร็จ" });
+      }
+    });
+  
+ 
+});
+app.put("/Editroom/", (req, res) => { 
+  const id_roomname = req.body.id_roomname;
+  const name = req.body.name;
+  const seat = req.body.seat;
+  const number_room = req.body.number_room;
+
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+    connection.execute(
+      "UPDATE d8_room_name SET name = ?,seat = ?,number_room = ? WHERE id_roomname = ?", 
+      [name,seat,number_room,id_roomname],
+      (err, result) => {
+        
+      if (err) {
+        console.log(err);
+      } else {
+        res.json({ status: "ok", message: "แก้ไขสำเร็จ" });
+      }
+    });
+  });
+  
+ 
+}); 
 app.put("/Staffcompassmail", (req, res) => {
   const passmail_id = req.body.passmail_id;
   const id_card = req.body.id_card;
@@ -467,6 +611,7 @@ app.put("/Staffcompassmail", (req, res) => {
   const name_passmail = req.body.name_passmail;
   const new_passmail = req.body.new_passmail;
   const confirm = req.body.confirm;
+  
 
 
     connection.execute(
@@ -559,7 +704,7 @@ app.put("/EditAdmin/", (req, res) => {
   });
  
 });
-
+  
 app.put("/Editusers/", (req, res) => {
   const id = req.body.id;
   const email = req.body.email;
@@ -691,6 +836,20 @@ app.delete("/deletpassmail", (req, res) => {
       }
     }
   );
+});
+app.delete("/deletroom", (req, res) => {
+  const id_roomname = [req.body. id_roomname];
+  connection.execute(
+    "DELETE FROM d8_room_name WHERE id_roomname = ?",
+    id_roomname, 
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json({ status: "ok", message: "ลบสำเร็จ" });
+      }
+    }
+  ); 
 });
 app.listen(3333, function () {
   console.log(" online api on port 3333");

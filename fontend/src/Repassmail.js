@@ -7,9 +7,11 @@ import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 
 export default function CreatUserCom() {
+  const d = new Date();
+  
+     console.log(d);
   const handlesubmit = (event) => {
-    const request_date = new Date();
-    document.getElementById("demo").innerHTML = request_date;
+    
     event.preventDefault();
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -48,7 +50,7 @@ export default function CreatUserCom() {
   const [study_group, setstudy_group] = useState("");
   const [name_passmail, setname_passmail] = useState("เรื่อง ขอรับรหัสผ่านใหม่");
   const [new_passmail, setnew_passmail] = useState("");
-  const [request_date, setrequest_date] = useState("request_date");
+  const [request_date, setrequest_date] = useState(d);
 
 console.log(request_date)
   
@@ -79,14 +81,16 @@ console.log(request_date)
               </Grid>
               <Grid item xs={6} sm={12}>
                 <TextField
-                  id="demo"
-                  variant="standard"
-                  color="warning"
-                  focused
-                  fullWidth
                   
-                  value={request_date}
+                  id="demo"
+                  type="text"
+                  variant="standard"
+                  fullWidth
+                  label="วันเวลาที่ขอ"
+                  focused
+                  required
                   onChange={(e) => setrequest_date(e.target.value)}
+                  value={d}
                 />
               </Grid>
               <Grid item xs={6} sm={12}>

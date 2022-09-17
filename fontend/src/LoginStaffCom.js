@@ -72,10 +72,10 @@ export default function SignInSide() {
         <Grid
           item
           xs={false}
-          sm={4}
-          md={7}
+          sm={3}
+          md={6}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: "url(https://academic.lru.ac.th/th/wp-content/uploads/2019/04/3-800x445.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -112,7 +112,7 @@ export default function SignInSide() {
                 required
                 fullWidth
                 id="email"
-                label="อีเมลมหาวิทยาลัย  "
+                label="อีเมล"
                 name="email"
                 autoComplete="email"
                 autoFocus

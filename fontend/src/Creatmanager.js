@@ -137,7 +137,7 @@ export default function CreatUserCom() {
               <Grid item xs={6} sm={12}>
                 <TextField
                   id="job_position"
-                  label="ตำแหน่งของผู้บิรหาร"
+                  label="ตำแหน่งของผู้บริหาร"
                   variant="outlined"
                   fullWidth
                   onChange={(e) => setjob_position(e.target.value)}
@@ -146,17 +146,17 @@ export default function CreatUserCom() {
               <Grid item xs={6} sm={12}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
-                    สถานะเจ้าหน้าที่
+                    สถานะใช้งาน
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="status"
                     name="status"
-                    label="สถานะเจ้าหน้าที่"
+                    label="สถานะใช้งาน"
                     onChange={(e) => setstatus(e.target.value)}
                   >
-                    <MenuItem value={"0"}>เปิดใช้งาน</MenuItem>
-                    <MenuItem value={"1"}>ปิดใช้งาน</MenuItem>
+                    <MenuItem value={"1"}>เปิดใช้งาน</MenuItem>
+                    <MenuItem value={"0"}>ปิดใช้งาน</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -170,7 +170,7 @@ export default function CreatUserCom() {
               <Grid item xs={6} >
               <Grid container>
                 <Grid item xs>
-                  <Link href="/adminstafftech" variant="body2">
+                  <Link href="/Mainmanager" variant="body2">
                     ย้อนกลับ
                   </Link>
                 </Grid>

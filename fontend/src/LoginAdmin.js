@@ -75,7 +75,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: "url(https://lru.ac.th/th/wp-content/uploads/2021/02/DSC_1008-800x445.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -113,7 +113,7 @@ export default function SignInSide() {
                 required
                 fullWidth
                 id="email"
-                label="อีเมลมหาวิทยาลัย  "
+                label="อีเมล  "
                 name="email"
                 autoComplete="email"
                 autoFocus
