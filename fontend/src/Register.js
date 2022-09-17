@@ -268,7 +268,7 @@ export default function SignUp() {
                     required
                   />
                 </Grid>
-                <Grid item xs={6}>
+               <Grid item xs={6}>
                   <Stack direction="row" alignItems="center" spacing={2}>
                     <Button variant="contained" component="label">
                       อัปรูปบัตรประจำตัวประชาชน
@@ -297,7 +297,7 @@ export default function SignUp() {
                   ))}
                 </Grid>
                 <Grid item xs={6}>
-                  <Stack direction="row" alignItems="center" spacing={2}>
+                 <Stack direction="row" alignItems="center" spacing={2}>
                     <Button variant="contained" component="label">
                       อัปรูปบัตรประจำตัวนักศึกษา
                       <input
