@@ -13,19 +13,17 @@ import Link from "@mui/material/Link";
 import Axios from "axios";
 import TableBody from "@mui/material/TableBody";
 export default function Editcom() {
-  
   const { room_id } = useParams();
   useEffect(() => {
     var requestOptions = {
       method: "GET",
       redirect: "follow",
     };
-    
 
-    fetch("http://localhost:3333/Noreserve/"+[room_id], requestOptions)
+    fetch("http://localhost:3333/Noreserve/" + [room_id], requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === 'ok' && result.message.length == 1) {
+        if (result.status === "ok" && result.message.length == 1) {
           var message = result.message[0];
           //alert( JSON.stringify(message) ) ;
           setroom_name(message.room_name);
@@ -36,7 +34,6 @@ export default function Editcom() {
           setname_reserve(message.name_reserve);
           setnote(message.note);
           setcon_firm(message.con_firm);
-
         }
       })
       .catch((error) => console.log("error", error));
@@ -57,7 +54,6 @@ export default function Editcom() {
       name_reserve: name_reserve,
       note: note,
       con_firm: data.get("con_firm"),
-
     });
 
     var requestOptions = {
@@ -70,7 +66,7 @@ export default function Editcom() {
     fetch("http://localhost:3333/allowreserve/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result['message'])
+        alert(result["message"]);
         if (result["status"] === "ok") {
           window.location.href = "/MainCom";
         }
@@ -86,9 +82,6 @@ export default function Editcom() {
   const [note, setnote] = useState("");
   const [con_firm, setcon_firm] = useState("");
 
-
-  
-  
   return (
     <React.Fragment>
       <CssBaseline />
@@ -101,7 +94,7 @@ export default function Editcom() {
           <TableBody>
             <Grid>
               <Grid container spacing={2}>
-              <Grid item xs={6} sm={12}>
+                <Grid item xs={6} sm={12}>
                   <TextField
                     id="name_reserve"
                     label="เรื่อง"
@@ -110,8 +103,7 @@ export default function Editcom() {
                     color="warning"
                     fullWidth
                     onChange={(e) => setname_reserve(e.target.value)}
-                    value = {"เรื่อง จองใช้ห้องคอม"}
-
+                    value={"เรื่อง จองใช้ห้องคอม"}
                   />
                 </Grid>
                 <Grid item xs={6} sm={12}>
@@ -122,7 +114,7 @@ export default function Editcom() {
                     fullWidth
                     disabled
                     onChange={(e) => setroom_name(e.target.value)}
-                    value = {room_name}
+                    value={room_name}
                   />
                 </Grid>
                 <Grid item xs={6} sm={12}>
@@ -133,20 +125,18 @@ export default function Editcom() {
                     fullWidth
                     disabled
                     onChange={(e) => setdetail_reserve(e.target.value)}
-                    value = {detail_reserve}
-
+                    value={detail_reserve}
                   />
                 </Grid>
                 <Grid item xs={6} sm={12}>
-                <TextField
+                  <TextField
                     id="date_reserve"
                     label="วันที่ต้องการจอง"
                     variant="outlined"
                     fullWidth
                     disabled
                     onChange={(e) => setdate_reserve(e.target.value)}
-                    value = {date_reserve}
-
+                    value={date_reserve}
                   />
                 </Grid>
                 <Grid item xs={6} sm={12}>
@@ -157,8 +147,7 @@ export default function Editcom() {
                     fullWidth
                     disabled
                     onChange={(e) => settime_start(e.target.value)}
-                    value = {time_start}
-
+                    value={time_start}
                   />
                 </Grid>
                 <Grid item xs={6} sm={12}>
@@ -169,40 +158,42 @@ export default function Editcom() {
                     fullWidth
                     disabled
                     onChange={(e) => settime_end(e.target.value)}
-                    value = {time_end}
-
+                    value={time_end}
                   />
                 </Grid>
 
-              
                 <Grid item xs={6} sm={12}>
-                <TextField
-                    id="note"
+                  <TextField
+                    id="standard-multiline-static"
+                    
+                    multiline
+                    rows={4}
+                    defaultValue="Default Value"
+                  
+                    
                     label="หมายเหตุ/เหตุผลที่ไม่อนุมัติ"
                     variant="outlined"
                     fullWidth
-                    
                     onChange={(e) => setnote(e.target.value)}
                     value={note}
                   />
                 </Grid>
                 <Grid item xs={6} sm={12}>
-                <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        อนุมัติ/ไม่อนุมัติ
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="con_firm"
-                        name="con_firm"
-                        label="อนุมัติ/ไม่อนุมัติ"
-                        required
-                      >
-                        <MenuItem value={"อนุมัติ"}>อนุมัติ</MenuItem>
-                        <MenuItem value={"ไม่อนุมัติ"}>ไม่อนุมัติ</MenuItem>
-                       
-                      </Select>
-                    </FormControl>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      อนุมัติ/ไม่อนุมัติ
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="con_firm"
+                      name="con_firm"
+                      label="อนุมัติ/ไม่อนุมัติ"
+                      required
+                    >
+                      <MenuItem value={"อนุมัติ"}>อนุมัติ</MenuItem>
+                      <MenuItem value={"ไม่อนุมัติ"}>ไม่อนุมัติ</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
 
                 <Grid item xs={12}>
@@ -227,8 +218,4 @@ export default function Editcom() {
       </Container>
     </React.Fragment>
   );
- 
 }
-
-
-

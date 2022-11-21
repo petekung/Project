@@ -81,7 +81,7 @@ export default function Editcom() {
   const [status, setstatus] = useState("");
 
   
-  console.log(email)
+ 
   console.log(title_name)
   return (
     <React.Fragment>
@@ -105,24 +105,14 @@ export default function Editcom() {
                     value = {email}
                   />
                 </Grid>
-                <Grid item xs={6} sm={12}>
-                  <TextField
-                    id="password"
-                    label="รหัสผ่าน เจ้าหน้าที่ศูนย์เทคโนโลยี "
-                    variant="outlined"
-                    fullWidth
-                    onChange={(e) => setpassword(e.target.value)}
-                    value = {password}
-
-                  />
-                </Grid>
+                
                 <Grid item xs={6} sm={12}>
                 <TextField
                     id="title_name"
                     label="คำนำหน้าชื่อ"
                     variant="outlined"
                     fullWidth
-                    onChange={(e) => setpassword(e.target.value)}
+                    onChange={(e) => settitle_name(e.target.value)}
                     value = {title_name}
 
                   />

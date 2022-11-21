@@ -34,6 +34,9 @@ import Resevedd from './Resevedd'
 import Mainmanageroom from './Mainmanageroom'
 import Editroom from './Editroom'
 import Creatroom from './Creatroom'
+import Uploadnpm from './Uploadnpm'
+
+
 
 
 
@@ -51,6 +54,7 @@ root.render(
   <BrowserRouter>
   <Routes>
   <Route path ="/" element={< Login />} />
+  <Route path ="/Uploadnpm/:passmail_id" element={< Uploadnpm />} />
   <Route path ="/ManageRoom" element={< Mainmanageroom />} />
   <Route path ="/Creatroom" element={< Creatroom />} />
     <Route path ="/Editroom/:id_roomname" element={< Editroom />} />

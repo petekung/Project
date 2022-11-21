@@ -12,10 +12,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-
+import Link from "@mui/material/Link";
 
 export default function SimpleContainer() {
-  
+  const passmail = (passmail_id) => {
+    window.location = "Uploadnpm/" + passmail_id;
+  };
   const repassmail = id =>{
     window.location = ' '+id
   }
@@ -28,7 +30,7 @@ export default function SimpleContainer() {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3333/repassmail")
+    fetch("http://localhost:3333/repassmailusers")
       .then((res) => res.json())
       .then((result) => {
         setItems(result);
@@ -75,14 +77,16 @@ fetch("http://localhost:3333/deletpassmail", requestOptions)
             
           </Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 900 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>รหัสรายการคำขออีเมล</TableCell>
+                  <TableCell align="center" width={100}>รหัสรายการคำขออีเมล</TableCell>
                   <TableCell align="center">รายการคำขอ</TableCell>
-                  <TableCell align="center">ผลคำขอ</TableCell>
+                  <TableCell align="center" >ผลคำขอ</TableCell>
                   
                   <TableCell align="center">วันที่ขอ</TableCell>
+                  <TableCell align="center">รูปบัตรนักศึกษา</TableCell>
+                  <TableCell align="center"></TableCell>
 
                   
 
@@ -105,6 +109,21 @@ fetch("http://localhost:3333/deletpassmail", requestOptions)
                     <TableCell align="center">{row.new_passmail}</TableCell>
                    
                     <TableCell align="center" type="text">{row.request_date}</TableCell>
+                    <TableCell align="center" type="text">{row.image_student}</TableCell>
+                    <TableCell align="center">
+                      <ButtonGroup
+                        variant="contained"
+                        aria-label="outlined button group"
+                      >
+                        <Button
+                          color="secondary"
+                          variant="outlined"
+                          onClick={() => passmail(row.passmail_id)}
+                        >
+                          อัปโหลดรูปภาพ
+                        </Button>
+                      </ButtonGroup>
+                    </TableCell>
                     
                     <TableCell align="center">
                    

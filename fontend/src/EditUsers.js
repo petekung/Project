@@ -118,17 +118,7 @@ export default function EditUsers() {
                     value = {email}
                   />
                 </Grid>
-                <Grid item xs={6} sm={12}>
-                  <TextField
-                    id="password"
-                    label="รหัสผ่าน ผู้ใช้ "
-                    variant="outlined"
-                    fullWidth
-                    onChange={(e) => setpassword(e.target.value)}
-                    value = {password}
-
-                  />
-                </Grid>
+                
                 <Grid item xs={6} sm={12}>
                   <TextField
                     id="stutas_users"

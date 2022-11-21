@@ -69,8 +69,10 @@ export default function SimpleContainer() {
                   <TableCell>รหัสรายการคำขอ</TableCell>
                   <TableCell align="center">รายการคำขอ</TableCell>
                   <TableCell align="center">วันที่ขอรหัสผ่านอีเมล</TableCell>
-
+                  
                   <TableCell align="center">สถานะ</TableCell>
+
+                  <TableCell align="center">รูปบัตรนักศึกษา</TableCell>
                   <TableCell align="center">จัดการคำขอ</TableCell>
                 </TableRow>
               </TableHead>
@@ -84,9 +86,15 @@ export default function SimpleContainer() {
                       {row.passmail_id}
                     </TableCell>{" "}
                     <TableCell align="center">{row.name_passmail}</TableCell>
+                    
+                    
+                    
                     <TableCell align="center">{row.request_date}</TableCell>
-
+                    
                     <TableCell align="center">{row.confirm}</TableCell>
+                    <TableCell align="center"> <img  width="150"  height="180" 
+                          src={require('./public_html/uploads/'+row.image_student)} alt=" Logo" /></TableCell>
+                  
                     <TableCell align="center">
                       <ButtonGroup
                         variant="contained"
@@ -94,7 +102,7 @@ export default function SimpleContainer() {
                       >
                         <Button
                           color="success"
-                          onClick={() => passmail(row.passmail_id)}
+                          onClick={() =>  (row.passmail_id)}
                         >
                           ตรวจสอบ
                         </Button>

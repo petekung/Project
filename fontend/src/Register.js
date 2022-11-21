@@ -60,9 +60,7 @@ export default function SignUp() {
     );
     setImageURL2(newImagesUrls2);
   }, [images2]);
-  function onImageChang2(e) {
-    setImages2([...e.target.files]);
-  }
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -268,62 +266,7 @@ export default function SignUp() {
                     required
                   />
                 </Grid>
-               <Grid item xs={6}>
-                  <Stack direction="row" alignItems="center" spacing={2}>
-                    <Button variant="contained" component="label">
-                      อัปรูปบัตรประจำตัวประชาชน
-                      <input
-                        hidden
-                        accept="image/*"
-                        multiple
-                        type="file"
-                        fullWidth
-                        id="image_id_population"
-                        name="image_id_population"
-                        required
-                        onChange={onImageChang}
-                      />
-                    </Button>
-                  </Stack>
-                  <br></br>
-                  {imageURL.map((imageSRC) => (
-                    <img
-                      width="200"
-                      height="200"
-                      id="image_id_population"
-                      name="image_id_population"
-                      src={imageSRC}
-                    />
-                  ))}
-                </Grid>
-                <Grid item xs={6}>
-                 <Stack direction="row" alignItems="center" spacing={2}>
-                    <Button variant="contained" component="label">
-                      อัปรูปบัตรประจำตัวนักศึกษา
-                      <input
-                        hidden
-                        accept="image/*"
-                        multiple
-                        type="file"
-                        id="image_id_card_student"
-                        name="image_id_card_student"
-                        required
-                        onChange={onImageChang2}
-                      />
-                    </Button>
-                  </Stack>
-                  <br></br>
-                  {imageURL2.map((imageSRC2) => (
-                    <img
-                      width="200"
-                      height="200"
-                      id="image_id_card_student"
-                      name="image_id_card_student"
-                      required
-                      src={imageSRC2}
-                    />
-                  ))}
-                </Grid>
+                
                 <Grid item xs={12}></Grid>
 
                 <Grid item xs={12}>

@@ -13,14 +13,14 @@ function App() {
       <Navber />
       
       <Container maxWidth="s">
-        <Typography
+      <Typography
           component="h2"
           variant="h2"
           align="center"
           color="text.primary"
           gutterBottom
         >
-          
+          ผู้ใช้ทั่วไป
         </Typography>
         <Typography
           variant="h5"

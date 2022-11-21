@@ -3,15 +3,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Grid, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-
 import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import Link from "@mui/material/Link";
-
 import TableBody from "@mui/material/TableBody";
+
 export default function Editcom() {
   const { staff_id } = useParams();
-  
+
   const handlesubmit = (event) => {
     event.preventDefault();
     var myHeaders = new Headers();
@@ -30,7 +29,7 @@ export default function Editcom() {
 
     var requestOptions = {
       method: "PUT",
-      headers: myHeaders,
+      headers: myHeaders, 
       body: raw,
       redirect: "follow",
     };
@@ -38,7 +37,7 @@ export default function Editcom() {
     fetch("http://localhost:3333/Editcom/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result["message"]);
+        
         if (result["status"] === "ok") {
           alert(result["message"]);
           window.location.href = "/adminstaffcom";
@@ -62,7 +61,7 @@ export default function Editcom() {
     fetch("http://localhost:3333/selectcom/" + [staff_id], requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === 'ok' && result.message.length == 1) {
+        if (result.status === "ok" && result.message.length ===1) {
           var message = result.message[0];
           //alert( JSON.stringify(message) ) ;
           setemail(message.email);
@@ -76,7 +75,7 @@ export default function Editcom() {
       })
       .catch((error) => console.log("error", error));
   }, [staff_id]);
-console.log(email)
+  console.log(email);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -99,16 +98,7 @@ console.log(email)
                     value={email}
                   />
                 </Grid>
-                <Grid item xs={6} sm={12}>
-                  <TextField
-                    id="password"
-                    label="รหัสผ่านเจ้าหน้าที่ศูนย์คอมพิวเตอร์ "
-                    variant="outlined"
-                    fullWidth
-                    onChange={(e) => setpassword(e.target.value)}
-                    value={password}
-                  />
-                </Grid>
+
                 <Grid item xs={6} sm={12}>
                   <TextField
                     id="tiltel_name"
@@ -159,6 +149,7 @@ console.log(email)
                     onChange={(e) => setstatus(e.target.value)}
                     value={status}
                   />
+
                 </Grid>
 
                 <Grid item xs={12}>

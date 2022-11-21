@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Grid, Typography } from "@mui/material";
@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Tablere from './Tablere';
 export default function CreatUserCom() {
   const handlesubmit = (event) => {
     const request_date = new Date();
@@ -23,11 +24,10 @@ export default function CreatUserCom() {
       detail_reserve: detail_reserve,
       date_reserve: date_reserve,
       time_start: time_start,
-      time_end:time_end,
+      time_end: time_end,
       name_reserve: name_reserve,
-      con_firm:con_firm,
-      note:note,
-      
+      con_firm: con_firm,
+      note: note,
     });
 
     var requestOptions = {
@@ -62,19 +62,15 @@ export default function CreatUserCom() {
   const [time_start, settime_start] = useState("");
   const [time_end, settime_end] = useState("");
   const [name_reserve, setname_reserve] = useState("เรื่อง จองใช้ห้องคอม");
-  const [con_firm, setcon_firm] = useState("");
+  const [con_firm, setcon_firm] = useState("กำลังรอ...");
   const [note, setnote] = useState("");
-
-
- 
-
-
-  
 
   return (
     <React.Fragment>
       <CssBaseline />
-
+      <div>
+        <Tablere/>
+      </div>
       <Container maxWidth="sm" sx={{ p: 2 }}>
         <Typography variant="h6" gutterBottom component="div">
           กรุณากรอกข้อมูลให้ครบ
@@ -85,32 +81,32 @@ export default function CreatUserCom() {
             <Grid container spacing={2}>
               <Grid item xs={6} sm={12}>
                 <TextField
-                  
                   variant="standard"
                   color="warning"
                   focused
                   fullWidth
-                  
                   value="เรื่อง จองใช้ห้องคอม"
                   onChange={(e) => setname_reserve(e.target.value)}
                 />
               </Grid>
               <Grid item xs={6} sm={12}>
                 <TextField
-                type="date"
+                  type="date"
                   id="demo"
                   required
                   variant="standard"
                   focused
                   fullWidth
                   label="วันที่ใช้ห้อง"
-               
                   onChange={(e) => setdate_reserve(e.target.value)}
                 />
               </Grid>
               <Grid item xs={6} sm={12}>
                 <TextField
-                  id="detail_reserve"
+                  id="standard-multiline-static"
+                  multiline
+                  rows={4}
+                 
                   label="แจ้งความประสงค์การจอง/เหตุผลการจอง"
                   variant="outlined"
                   fullWidth
@@ -119,37 +115,41 @@ export default function CreatUserCom() {
                 />
               </Grid>
               <Grid item xs={6} sm={12}>
-                
-                  
-              <FormControl fullWidth  >
-              
-            
-                      <InputLabel id="demo-simple-select-label">
-                        รายการห้อง
-                      </InputLabel>
-                      
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="room_name"
-                        name="room_name"
-                        label="รายการห้อง"
-                        required
-                        onChange={(e) => setroom_name(e.target.value)}
-                        
-                       
-                       
-                      >{items.map((row) => (
-                        
-                        <MenuItem value={row.name+' '+row.number_room+':'+row.seat+' ที่นั่ง'}  key={row.id_roomname}>{row.name} {row.number_room}:{row.seat} ที่นั่ง</MenuItem>
-                        ))}
-                      </Select>
-                      
-                    </FormControl>
-                    
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    รายการห้อง
+                  </InputLabel>
+
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="room_name"
+                    name="room_name"
+                    label="รายการห้อง"
+                    required
+                    onChange={(e) => setroom_name(e.target.value)}
+                  >
+                    {items.map((row) => (
+                      <MenuItem
+                        value={
+                          row.name +
+                          " " +
+                          row.number_room +
+                          ":" +
+                          row.seat +
+                          " ที่นั่ง"
+                        }
+                        key={row.id_roomname}
+                      >
+                        {row.name} {row.number_room}:{row.seat} ที่นั่ง
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               </Grid>
 
               <Grid item xs={6} sm={12}>
-                <TextField type="time"
+                <TextField
+                  type="time"
                   id="time_start"
                   label="เวลาตั้งแต่"
                   variant="outlined"
@@ -160,7 +160,8 @@ export default function CreatUserCom() {
                 />
               </Grid>
               <Grid item xs={6} sm={12}>
-                <TextField type="time"
+                <TextField
+                  type="time"
                   id="time_start"
                   label="ถึงเวลา"
                   variant="outlined"
@@ -170,7 +171,6 @@ export default function CreatUserCom() {
                   onChange={(e) => settime_end(e.target.value)}
                 />
               </Grid>
-              
 
               <Grid item xs={12}>
                 <Button
@@ -195,6 +195,7 @@ export default function CreatUserCom() {
             </Grid>
           </Grid>
         </form>
+        
       </Container>
     </React.Fragment>
   );

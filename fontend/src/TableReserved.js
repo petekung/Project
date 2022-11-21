@@ -19,6 +19,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Allroom from './Allroom'
+import Watireserve from './Watireserve'
+
+
 
 
 
@@ -28,7 +31,7 @@ export default function SimpleContainer() {
   };
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3333/fromreserve")
+    fetch("http://localhost:3333/fromreserved")
       .then((res) => res.json())
       .then((result) => {
         setItems(result);
@@ -67,7 +70,7 @@ export default function SimpleContainer() {
           <Box display="flex">
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                รายชื่อห้องถูกจอง
+                รายชื่อห้องที่ได้รับอนุมัติแล้ว
               </Typography>
              
             </Box>
@@ -134,7 +137,21 @@ export default function SimpleContainer() {
                 </TableRow>
               </TableHead>
              <div>
+              <Watireserve/>
+              
+             </div>
+            </Table>
+          </TableContainer>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+
+                </TableRow>
+              </TableHead>
+             <div>
               <Allroom/>
+              
              </div>
             </Table>
           </TableContainer>
